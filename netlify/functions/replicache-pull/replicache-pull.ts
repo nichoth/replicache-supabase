@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { Handler, HandlerEvent } from '@netlify/functions'
 import { authError, processPull, PullRequestSchema } from '../../../src/pull.js'
 
@@ -19,7 +20,7 @@ export const handler:Handler = async function (ev:HandlerEvent) {
         } else {
             return {
                 statusCode: 500,
-                body: 'Error processing pull: ' + err.message()
+                body: 'Error processing pull: ' + err.message
             }
         }
     }
