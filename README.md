@@ -1,5 +1,6 @@
 # replicache supabase
 ![tests](https://github.com/nichoth/replicache-supabase/actions/workflows/nodejs.yml/badge.svg)
+[![Socket Badge](https://socket.dev/api/badge/npm/package/@nichoth/replicache-supabase)](https://socket.dev/npm/package/@nichoth/replicache-supabase)
 [![types](https://img.shields.io/npm/types/@nichoth/replicache-supabase)](README.md)
 [![module](https://img.shields.io/badge/module-ESM-blue)](README.md)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
