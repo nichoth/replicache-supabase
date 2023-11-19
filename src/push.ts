@@ -41,8 +41,8 @@ export async function processPush (
             userID
         )
 
-        // Since all mutations within one transaction, we can just increment the
-        // global version once.
+        // Since all mutations are within one transaction, we can just increment
+        // the global version once.
         const prevVersion = await getGlobalVersion(executor)
         const nextVersion = prevVersion + 1
 
