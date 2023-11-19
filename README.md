@@ -9,6 +9,8 @@ Use [replicache](https://replicache.dev/) with [supabase](https://supabase.com/)
 
 This is some glue code for [replicache](https://replicache.dev/) and [supabase](https://supabase.com/). Use it in your lambda functions.
 
+This is using the [global version strategy](https://doc.replicache.dev/strategies/global-version).
+
 ## install
 ```sh
 npm i -S @nichoth/replicache-supabase
