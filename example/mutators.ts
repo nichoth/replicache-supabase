@@ -18,3 +18,5 @@ export function Mutators () {
         }
     }
 }
+
+export type M = ReturnType<typeof Mutators>;
