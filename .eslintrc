@@ -8,6 +8,7 @@
   },
   "rules": {
     "operator-linebreak": ["off"],
+    "dot-notation": ["off"],
     "react/jsx-first-prop-new-line": ["off"],
     "react/jsx-indent-props": "off",
     "react/jsx-closing-tag-location": ["off"],

@@ -12,16 +12,16 @@ import {
 } from './data.js'
 import { getClientGroup } from './util.js'
 
-const mutationSchema = z.object({
+const MutationSchema = z.object({
     id: z.number(),
     clientID: z.string(),
     name: z.string(),
     args: z.any(),
 })
 
-const PushRequestSchema = z.object({
+export const PushRequestSchema = z.object({
     clientGroupID: z.string(),
-    mutations: z.array(mutationSchema),
+    mutations: z.array(MutationSchema),
 })
 
 export type PushRequest = z.infer<typeof PushRequestSchema>;
@@ -119,7 +119,6 @@ async function ensureClientGroup (
     if (clientGroup) {
         // Users can only access their own groups.
         if (clientGroup.userID !== userID) {
-            console.log('**here**', clientGroup, userID)
             throw new Error('Users can only access their own groups')
         }
         return clientGroup

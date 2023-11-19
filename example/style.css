@@ -1,0 +1,33 @@
+ul.nav {
+    & li {
+        &.active {
+            background-color: pink;
+            padding: 0.5rem;
+            width: fit-content;
+            padding-top: 0.3rem;
+        }
+    }
+}
+
+.count-controls {
+    list-style: none;
+    padding: 0;
+
+    & li {
+        margin-bottom: 1rem;
+    }
+}
+
+button {
+    cursor: pointer;
+
+    &:hover {
+        background: seashell;
+    }
+}
+
+body {
+    & div {
+        margin-bottom: 1rem;
+    }
+}

@@ -2,3 +2,10 @@
 node_modules
 .env
 .DS_Store
+example
+src
+test
+.netlify
+netlify
+.github
+_public

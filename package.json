@@ -1,31 +1,45 @@
 {
+  "name": "@nichoth/replicache-supabase",
+  "description": "![tests](https://github.com/nichoth/replicache-supabase/actions/workflows/nodejs.yml/badge.svg) [![types](https://img.shields.io/npm/types/@nichoth/**placeholder**)](README.md) [![module](https://img.shields.io/badge/module-ESM-blue)](README.md) [![license](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)",
   "type": "module",
   "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
     "lint": "standardx -v \"./**/*.ts\"",
-    "build-tests": "esbuild test/index.ts --target=es2020 --bundle --keep-names > test/test-bundle.js",
-    "test": "npm run lint && npm run build && npm run build-tests && npm run test-tape-run",
-    "test-tape-run": "cat test/index.html | tape-run --input=html --static=test | tap-arc",
-    "build-cjs": "esbuild src/*.ts --format=cjs --tsconfig=tsconfig.build.json --keep-names --outdir=./dist --out-extension:.js=.cjs",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && tsc --project tsconfig.build.json",
+    "test": "esbuild test/index.ts --bundle --platform=node --format=cjs | node | tap-arc",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && tsc --project tsconfig.build.json",
     "start": "concurrently --kill-others \"npx ntl functions:serve --port=9999 --debug\" \"npx vite\"",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
   },
+  "dependencies": {
+    "pg-promise": "^11.5.4",
+    "replicache": "^13.0.1",
+    "replicache-transaction": "^0.3.1",
+    "zod": "^3.22.4"
+  },
   "devDependencies": {
+    "@netlify/functions": "^2.4.0",
+    "@nichoth/components": "^0.13.3",
     "@nichoth/debug": "^0.2.5",
     "@nichoth/tapzero": "^0.8.4",
+    "@preact/preset-vite": "^2.7.0",
+    "@preact/signals": "^1.2.1",
     "@typescript-eslint/parser": "^5.55.0",
+    "concurrently": "^8.2.2",
     "dotenv": "^16.3.1",
     "esbuild": "^0.19.5",
+    "htm": "^3.1.1",
+    "netlify-cli": "^17.2.2",
     "postcss-nesting": "^12.0.1",
+    "preact": "^10.19.2",
+    "route-event": "^4.1.10",
     "standardx": "^7.0.0",
     "tap-arc": "^1.2.2",
     "tape-run": "^11.0.0",
     "typescript": "^5.2.2",
-    "vite": "^4.4.9"
+    "vite": "^5.0.0"
   },
   "exports": {
     ".": {
@@ -36,19 +50,25 @@
       "import": [
         "./dist/*.js",
         "./dist/*"
-      ],
-      "require": [
-        "./dist/*.cjs",
-        "./dist/*"
       ]
     }
   },
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
   "author": "nichoth <nichoth@gmail.com> (https://nichoth.com)",
   "license": "AGPL-3.0-or-later",
-  "dependencies": {
-    "pg-promise": "^11.5.4",
-    "replicache": "^13.0.1",
-    "replicache-transaction": "^0.3.1",
-    "zod": "^3.22.4"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/replicache-supabase.git"
+  },
+  "keywords": [
+    "supabase",
+    "replicache"
+  ],
+  "bugs": {
+    "url": "https://github.com/nichoth/replicache-supabase/issues"
+  },
+  "homepage": "https://github.com/nichoth/replicache-supabase#readme"
 }

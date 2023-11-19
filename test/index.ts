@@ -1,15 +1,7 @@
 import 'dotenv/config'
 import { test } from '@nichoth/tapzero'
-import { WriteTransaction } from 'replicache'
+import { Mutators } from '../example/mutators.js'
 import { processPush, PushRequest } from '../src/push.js'
-
-type Message = {
-    from: string;
-    content: string;
-    order: number;
-};
-
-type MessageWithID = Message & { id: string };
 
 test('process push', async t => {
     const pushRequest:PushRequest = {
@@ -31,36 +23,3 @@ test('process push', async t => {
         throw err
     }
 })
-
-/**
- * For tests
- */
-function Mutators () {
-    return {
-        increment: async (tx, delta) => {
-            const prev = (await tx.get('count')) ?? 0
-            const next = prev + delta
-            await tx.put('count', next)
-            return next
-        },
-
-        decrement: async (tx, delta) => {
-            const prev = (await tx.get('count')) ?? 0
-            const next = prev - delta
-            await tx.put('count', next)
-            tx.put('count', prev - delta)
-            return next
-        },
-
-        createMessage: async function (
-            tx:WriteTransaction,
-            { id, from, content, order }:MessageWithID
-        ) {
-            await tx.put(`message/${id}`, {
-                from,
-                content,
-                order,
-            })
-        },
-    }
-}
