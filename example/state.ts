@@ -3,8 +3,7 @@ import Route from 'route-event'
 import { Replicache } from 'replicache'
 import { initSpace } from './space.js'
 import { Mutators } from './mutators.js'
-const { VITE_LICENSE_KEY } = (import.meta.env || {})
-const LICENSE_KEY = VITE_LICENSE_KEY
+const { VITE_LICENSE_KEY: LICENSE_KEY } = (import.meta.env || {})
 
 export type Message = {
     from: string;
