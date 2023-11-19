@@ -24,7 +24,7 @@
       }
     ],
     "no-undef": "off",
-    "indent": [ "error", 4 ],
+    "indent": ["error", 4, { "ignoredNodes": ["TemplateLiteral *"] }],
     "comma-dangle": "off",
     "no-multi-spaces": ["error", { "ignoreEOLComments": true }]
   }
