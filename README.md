@@ -9,13 +9,6 @@ Use [replicache](https://replicache.dev/) with [supabase](https://supabase.com/)
 
 This is some glue code for [replicache](https://replicache.dev/) and [supabase](https://supabase.com/). Use it in your lambda functions.
 
-## test
-
-Run the test like this
-```sh
-npx esbuild test/index.ts --format=cjs --platform=node --bundle | node
-```
-
 ## install
 ```sh
 npm i -S @nichoth/replicache-supabase
@@ -95,4 +88,11 @@ export const handler:Handler = async function (ev:HandlerEvent) {
         }
     }
 }
+```
+
+## test
+
+Run the test like this
+```sh
+npx esbuild test/index.ts --format=cjs --platform=node --bundle | node
 ```
