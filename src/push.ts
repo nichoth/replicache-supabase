@@ -12,7 +12,7 @@ import {
 } from './data.js'
 import { getClientGroup } from './util.js'
 
-const MutationSchema = z.object({
+export const MutationSchema = z.object({
     id: z.number(),
     clientID: z.string(),
     name: z.string(),
