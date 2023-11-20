@@ -8,7 +8,9 @@
     "lint": "standardx -v \"./**/*.ts\"",
     "test": "esbuild test/index.ts --bundle --platform=node --format=cjs | node | tap-arc",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && tsc --project tsconfig.build.json",
-    "start": "concurrently --kill-others \"npx ntl functions:serve --port=9999 --debug\" \"npx vite\"",
+    "build-example": "cd example && vite",
+    "build-example:row-versioning": "cd example-row-versioning && vite",
+    "start": "cd example && concurrently --kill-others \"npx ntl functions:serve --port=9999 --debug\" \"npx vite\"",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
