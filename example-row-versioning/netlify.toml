@@ -1,0 +1,28 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+      Access-Control-Allow-Origin = "*"
+      access-control-allow-methods = "POST,GET,PUT,OPTIONS"
+      Access-Control-Allow-Headers = "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+      Access-Control-Max-Age = "2592000"
+      Access-Control-Allow-Credentials = "true"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[build]
+  command = "npm run build"
+  environment = { NODE_VERSION = '18' }
+  functions = "netlify/functions"
+  publish = "public"

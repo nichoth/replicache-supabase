@@ -42,16 +42,12 @@
     "vite": "^5.0.0"
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./*": {
-      "import": [
-        "./dist/*.js",
-        "./dist/*"
-      ]
-    }
+    "./global-version/*": [
+      "./dist/global-version/*.js"
+    ],
+    "./row-versioning/*": [
+      "./dist/row-versioning/*.js"
+    ]
   },
   "directories": {
     "example": "example",
