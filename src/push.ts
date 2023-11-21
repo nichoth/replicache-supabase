@@ -127,7 +127,7 @@ async function ensureClientGroup (
     return await createClientGroup(executor, id, userID)
 }
 
-async function ensureClient (
+export async function ensureClient (
     executor: Executor,
     id: string,
     clientGroupID: string,
