@@ -47,7 +47,7 @@ export async function processPush (
         const nextVersion = prevVersion + 1
 
         const storage = new PostgresStorage(nextVersion, executor)
-        const tx = new ReplicacheTransaction(storage)
+        const replicacheTx = new ReplicacheTransaction(storage)
         const clients = new Map<string, Client>()
 
         for (let i = 0; i < push.mutations.length; i++) {
@@ -88,7 +88,7 @@ export async function processPush (
             }
 
             try {
-                await mutator(tx, mutation.args)
+                await mutator(replicacheTx, mutation.args)
             } catch (e) {
                 console.error(
             `Error executing mutator: __${JSON.stringify(mutator) || mutator.name}__: ${e}`
@@ -103,7 +103,7 @@ export async function processPush (
         await Promise.all([
             ...[...clients.values()].map((c) => updateClient(executor, c)),
             setGlobalVersion(executor, nextVersion),
-            tx.flush(),
+            replicacheTx.flush(),
         ])
     })
 
