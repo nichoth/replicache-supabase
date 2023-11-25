@@ -7,11 +7,29 @@
   "scripts": {
     "lint": "standardx -v \"./**/*.ts\"",
     "test": "esbuild test/index.ts --bundle --platform=node --format=cjs | node | tap-arc",
-    "build": "mkdir -p ./dist && rm -rf ./dist/* && tsc --project tsconfig.build.json",
+    "build-esm": "mkdir -p ./dist && rm -rf ./dist/* && tsc --project tsconfig.build.json",
+    "build-cjs": "esbuild --format=cjs --outdir=dist --out-extension:.js=.cjs src/*.ts ",
+    "build": "npm run build-cjs && npm run build-esm",
     "start": "concurrently --kill-others \"npx ntl functions:serve --port=9999 --debug\" \"npx vite\"",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags && npm publish",
     "prepublishOnly": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./*": {
+      "import": [
+        "./dist/*.js",
+        "./dist/*"
+      ],
+      "require": [
+        "./dist/*.cjs",
+        "./dist/*"
+      ]
+    }
   },
   "dependencies": {
     "pg-promise": "^11.5.4",
@@ -40,18 +58,6 @@
     "tape-run": "^11.0.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./*": {
-      "import": [
-        "./dist/*.js",
-        "./dist/*"
-      ]
-    }
   },
   "directories": {
     "example": "example",
