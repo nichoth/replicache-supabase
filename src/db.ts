@@ -19,7 +19,7 @@ const dbp = (async () => {
 // Helper to make sure we always access database at serializable level.
 export async function tx<R> (
     fn:(executor:Executor) => R,
-    db?:IDatabase<unknown> | undefined
+    db?:IDatabase<unknown>|undefined
 ) {
     if (!db) {
         db = await dbp
