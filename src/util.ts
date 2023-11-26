@@ -176,8 +176,6 @@ export async function getChangedLastMutationIDs (
     clientGroupID: string,
     sinceVersion: number
 ): Promise<Record<string, number>> {
-    console.log('getting changed lmids', [clientGroupID, sinceVersion])
-
     const rows = await executor.manyOrNone(
         `select id, last_mutation_id from replicache_client
         where client_group_id = $1 and last_modified_version > $2`,
